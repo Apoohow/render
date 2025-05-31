@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: bash build.sh
-    startCommand: cd NCUFOODMAP_DJANGO || cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application --log-file - --workers 1 --threads 8
+    startCommand: cd NCUFOODMAP_DJANGO || cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application --log-file - --workers 1 --threads 8 --timeout 0
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
@@ -17,4 +17,6 @@ services:
       - key: ALLOWED_HOSTS
         value: ".onrender.com"
       - key: GOOGLE_MAPS_API_KEY
-        sync: false 
+        sync: false
+    healthCheckPath: /
+    autoDeploy: true 
