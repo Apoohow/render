@@ -2,7 +2,7 @@ services:
   - type: web
     name: ncufoodmap
     env: python
-    buildCommand: bash ./build.sh
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application
     envVars:
       - key: PYTHON_VERSION
