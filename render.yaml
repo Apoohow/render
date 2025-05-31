@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ncufoodmap
+    env: python
+    buildCommand: bash ./build.sh
+    startCommand: cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: DATABASE_URL
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        sync: false
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false 
