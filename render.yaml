@@ -2,8 +2,9 @@ services:
   - type: web
     name: ncufoodmap
     env: python
-    buildCommand: chmod +x build.sh && bash build.sh
-    startCommand: cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: cd NCUFOODMAP_DJANGO || cd foodmap/NCUFOODMAP_DJANGO && gunicorn ncufoodmap_backend.wsgi:application --log-file - --workers 1 --threads 8
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
@@ -14,6 +15,6 @@ services:
       - key: DJANGO_DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        sync: false
+        value: ".onrender.com"
       - key: GOOGLE_MAPS_API_KEY
         sync: false 

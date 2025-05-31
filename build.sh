@@ -1,15 +1,16 @@
 #!/bin/bash
-# exit on error
-set -o errexit
+set -e
 
-# 安裝 Python 依賴
+echo "Installing dependencies..."
 pip install -r requirements.txt
 
-# 進入 Django 專案目錄
-cd foodmap/NCUFOODMAP_DJANGO
+echo "Entering Django project directory..."
+ls -la
+pwd
+cd NCUFOODMAP_DJANGO || cd foodmap/NCUFOODMAP_DJANGO
 
-# 收集靜態檔案
+echo "Collecting static files..."
 python manage.py collectstatic --no-input
 
-# 執行資料庫遷移
+echo "Running migrations..."
 python manage.py migrate 
