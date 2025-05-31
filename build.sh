@@ -9,12 +9,12 @@ echo "Installing dependencies..."
 pip install -r requirements.txt
 
 echo "Entering Django project directory..."
-if [ -d "NCUFOODMAP_DJANGO" ]; then
-    cd NCUFOODMAP_DJANGO
-elif [ -d "foodmap/NCUFOODMAP_DJANGO" ]; then
+if [ -d "foodmap/NCUFOODMAP_DJANGO" ]; then
     cd foodmap/NCUFOODMAP_DJANGO
 else
-    echo "Error: Cannot find Django project directory"
+    echo "Error: Cannot find Django project directory at foodmap/NCUFOODMAP_DJANGO"
+    echo "Directory contents of foodmap:"
+    ls -la foodmap/
     exit 1
 fi
 
